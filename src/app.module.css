@@ -1,0 +1,30 @@
+.dashedBottomBorder {
+  border-bottom: 1px dashed rgb(178, 175, 175);
+}
+.fontSize16{
+font-size: 1rem;
+}
+.spaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editHover .editIcon {
+  visibility: hidden;
+}
+.editHover:hover .editIcon {
+  visibility: visible;
+}
+.editIcon {
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+  justify-content: center;
+}
+.editIcon:hover {
+  /* border: 1px solid rgb(202, 200, 200); */
+  border-radius: 4px;
+  text-align: center;
+  background-color: rgb(227, 223, 223);
+}
