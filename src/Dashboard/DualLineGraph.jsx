@@ -115,16 +115,8 @@ const DualLineGraph = (Props) => {
   useEffect(() => {
     setdataList([data, data]);
   }, []);
-  console.log(">>>>>>", dataList);
+
   const handleDateRangeChange = ({ val, key }) => {
-    console.log(val);
-    console.log("key", typeof key);
-    console.log(
-      "val1",
-      dateFormateDefault(val[0]),
-      "val2",
-      dateFormateDefault(val[1])
-    );
     const filterDatalist = dataList[key].filter(
       (el) => dayjs(el.date) > dayjs(val[0]) && dayjs(el.date) < dayjs(val[1])
     );
