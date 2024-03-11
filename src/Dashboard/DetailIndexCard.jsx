@@ -23,7 +23,7 @@ const DetailIndexCard = (Props) => {
         </div>
       ) : (
         <>
-          <Row justify={'space-between'}>
+          <Row justify={"space-between"}>
             <Col xs={20} sm={20} md={20} lg={20} xl={20} xxl={20}>
               <DetailOverlay>
                 <Text className={styles.dashedBottomBorder} strong>
@@ -42,7 +42,8 @@ const DetailIndexCard = (Props) => {
             </Col>
           </Row>
           <Text className={styles.fontSize16} strong>
-            { `${CheckPositiveNegativeValue(Props.currentValue)}` || `${CheckPositiveNegativeValue(Props.conversionRate)} %`}
+            {`${CheckPositiveNegativeValue(Props.currentValue)}` ||
+              `${CheckPositiveNegativeValue(Props.conversionRate)} %`}
             <sapn>
               <Text style={{ marginLeft: "4px" }} type="secondary">
                 {Props.changePercent > 0 ? (
