@@ -32,7 +32,7 @@ const DetailIndexCard = (Props) => {
               </DetailOverlay>
             </Col>
             <Col xs={2} sm={2} md={2} lg={2} xl={2} xxl={2}>
-              <DropdownMenu>
+              <DropdownMenu {...Props}>
                 <FaPencilAlt
                   className={styles.editIcon}
                   height={16}
