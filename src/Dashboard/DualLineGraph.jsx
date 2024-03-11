@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { DualAxes } from "@ant-design/charts";
 import { Col, DatePicker, Row } from "antd";
-const { RangePicker } = DatePicker;
+import LoderSkeleton from "./DashboardLoder";
 
+const { RangePicker } = DatePicker;
 
 const data = [
   {
@@ -52,16 +53,14 @@ const data = [
   },
 ];
 
+const DualLineGraph = (Props) => {
+  const [statics, setStatics] = useState([[{}], [{}]]);
 
-const DualLineGraph = () => {
-  const [statics, setStatics] = useState([[{}], [{}]])
-
-  useEffect(()=> {
-    setStatics([data, data])
-  },[])
+  useEffect(() => {
+    setStatics([data, data]);
+  }, []);
 
   const config = {
-    
     data: statics,
     xField: "year",
     yField: ["value", "count"],
@@ -69,34 +68,51 @@ const DualLineGraph = () => {
       {
         geometry: "line",
         color: "#5B8FF9",
+        smooth: false,
+        lineStyle: {
+          lineWidth: 4,
+          opacity: 0.5,
+        },
       },
       {
         geometry: "line",
         color: "#5AD8A6",
+        smooth: true,
+        lineStyle: {
+          lineWidth: 3,
+          lineDash: [5, 5],
+          opacity: 0.3,
+        },
       },
     ],
     xAxis: {
+      visible: true,
+      line: {
         visible: true,
-        line: {
-            visible:true
-        },
+      },
 
-        label: {
-            autoHide: true,
-            formatter: (v) => v
-        },
+      label: {
+        autoHide: true,
+        formatter: (v) => v,
+      },
     },
     yAxis: {
-        visible: true,
-        min: 0
+      visible: true,
+      min: 0,
     },
   };
 
   return (
     <Row>
       <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-        <DualAxes  autoFit  {...config} />
-        <RangePicker format={'MMM D, YYYY'} />
+        {Props.isLoding ? (
+          <LoderSkeleton />
+        ) : (
+          <>
+            <DualAxes autoFit {...config} />
+            <RangePicker format={"MMM D, YYYY"} />
+          </>
+        )}
       </Col>
     </Row>
   );

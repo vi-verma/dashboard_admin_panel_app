@@ -11,7 +11,7 @@ const Dashboard = (Props) => {
   const handleCollapseChange = (key) => {
     setActiveKey((prev) => (prev === key ? "" : key));
   };
-  
+
   const data = [
     {
       id: 1,
@@ -65,7 +65,7 @@ const Dashboard = (Props) => {
           }
           key="1"
         >
-          <DualLineGraph />
+          <DualLineGraph isLoding={Props.isLoding} />
         </Panel>
       </Collapse>
     </div>

@@ -3,6 +3,7 @@
 // import viteLogo from '/vite.svg'
 import { useEffect, useState } from "react";
 import Dashboard from "./Dashboard/Dashboard";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function App() {
   const [isLoding, setIsLoding] = useState(true);

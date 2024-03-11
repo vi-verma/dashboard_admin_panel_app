@@ -1,13 +1,21 @@
 .dashedBottomBorder {
   border-bottom: 1px dashed rgb(178, 175, 175);
 }
-.fontSize16{
-font-size: 1rem;
+.fontSize16 {
+  font-size: 1rem;
 }
 .spaceBetween {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.detailCardHover {
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.detailCardHover:hover {
+  background-color: rgb(234, 234, 234);
 }
 
 .editHover .editIcon {
@@ -22,9 +30,19 @@ font-size: 1rem;
   text-align: center;
   justify-content: center;
 }
+.borderRadius {
+  border-radius: 8px;
+  margin: 0 6px;
+}
+.cardBcg {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: #d2d2d2;
+  
+}
 .editIcon:hover {
   /* border: 1px solid rgb(202, 200, 200); */
   border-radius: 4px;
   text-align: center;
-  background-color: rgb(227, 223, 223);
+  background-color: rgb(203, 203, 203);
 }

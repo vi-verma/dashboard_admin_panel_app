@@ -70,7 +70,7 @@ const DropdownMenu = (Props) => {
   ];
 
   const handleMenuClick = (key) => {
-    console.log("key", key);
+    console.log("key>>", key);
   };
 
   const menuProps = {
@@ -80,7 +80,12 @@ const DropdownMenu = (Props) => {
 
   return (
     <div>
-      <Dropdown menu={menuProps}>{Props.children}</Dropdown>
+      <Dropdown
+        // trigger="click"
+        menu={menuProps}
+      >
+        {Props.children}
+      </Dropdown>
     </div>
   );
 };

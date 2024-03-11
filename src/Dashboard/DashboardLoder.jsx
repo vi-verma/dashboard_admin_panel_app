@@ -1,30 +1,16 @@
-import { Card, Col, Row } from "antd";
-import { Skeleton } from "antd";
+import Skeleton from "react-loading-skeleton";
+import styles from "../app.module.css";
 
-const DashboardLoder = () => {
+const LoderSkeleton = (Props) => {
   return (
-    <Card>
-          <Skeleton 
-          co
-          title={{
-            width: '75%',
-            
-          }}
-          paragraph={{
-      rows: 1,
-      width:'100%',
-          }} active></Skeleton>
-
-      {/* <Row gutter={16}>
-        <Col sm={24} md={24} lg={24} xl={24} xxl={24}>
-          <Skeleton active></Skeleton>
-        </Col>
-        <Col sm={24} md={24} lg={24} xl={24} xxl={24}>
-          <Skeleton active></Skeleton>
-        </Col>
-      </Row> */}
-    </Card>
+    <div className={styles.borderRadius}>
+      <Skeleton
+        baseColor="#d2d2d2"
+        highlightColor="#e5e3e3"
+        height={Props.height || 400}
+      />
+    </div>
   );
 };
 
-export default DashboardLoder;
+export default LoderSkeleton;

@@ -1,21 +1,14 @@
-import { Card, Col, Row, Skeleton, Typography } from "antd";
+import { Col, Row, Skeleton, Typography } from "antd";
 import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { FaPencilAlt } from "react-icons/fa";
 import DropdownMenu from "./DropdownMenu";
 import DetailOverlay from "./Overlay";
 import styles from "../app.module.css";
+import { CheckPositiveNegativeValue } from "../utils.js/CheckPositiveNegativeValue";
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const DetailIndexCard = (Props) => {
-  // {
-  //   isLoding,
-  //   id,
-  //   title,
-  //   currentValue,
-  //   changePercent,
-  //   conversionRate,
-  // }
   const skeletonProps = {
     title: { width: "75%" },
     paragraph: { rows: 1, width: "100%" },
@@ -23,12 +16,14 @@ const DetailIndexCard = (Props) => {
   };
 
   return (
-    <Card className={styles.editHover}>
+    <div className={`${styles.editHover} ${styles.detailCardHover}`}>
       {Props.isLoding ? (
-        <Skeleton {...skeletonProps}></Skeleton>
+        <div className={styles.cardBcg}>
+          <Skeleton {...skeletonProps}></Skeleton>
+        </div>
       ) : (
         <>
-          <Row >
+          <Row justify={'space-between'}>
             <Col xs={20} sm={20} md={20} lg={20} xl={20} xxl={20}>
               <DetailOverlay>
                 <Text className={styles.dashedBottomBorder} strong>
@@ -36,22 +31,18 @@ const DetailIndexCard = (Props) => {
                 </Text>
               </DetailOverlay>
             </Col>
-            <Col
-              xs={4}
-              sm={4}
-              md={4}
-              lg={4}
-              xl={4}
-              xxl={4}
-              
-            >
+            <Col xs={2} sm={2} md={2} lg={2} xl={2} xxl={2}>
               <DropdownMenu>
-                <FaPencilAlt className={styles.editIcon} height={16} width={16}/>
+                <FaPencilAlt
+                  className={styles.editIcon}
+                  height={16}
+                  width={16}
+                />
               </DropdownMenu>
             </Col>
           </Row>
           <Text className={styles.fontSize16} strong>
-            {Props.currentValue || `${Props.conversionRate} %`}
+            { `${CheckPositiveNegativeValue(Props.currentValue)}` || `${CheckPositiveNegativeValue(Props.conversionRate)} %`}
             <sapn>
               <Text style={{ marginLeft: "4px" }} type="secondary">
                 {Props.changePercent > 0 ? (
@@ -65,7 +56,7 @@ const DetailIndexCard = (Props) => {
           </Text>
         </>
       )}
-    </Card>
+    </div>
   );
 };
 
