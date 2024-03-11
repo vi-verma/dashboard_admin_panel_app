@@ -9,103 +9,103 @@ const { RangePicker } = DatePicker;
 
 const data = [
   {
-    date: "01/03/2001",
+    date: "01/03/2011",
     value: 3,
     count: 10,
-    averageOrderValue: '10000',
-    conversionRate: '2',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "2",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2002",
+    date: "01/03/2012",
     value: 4,
     count: 4,
-    averageOrderValue: '10000',
-    conversionRate: '4',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "4",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2003",
+    date: "01/03/2013",
     value: 3.5,
     count: 5,
-    averageOrderValue: '10000',
-    conversionRate: '7',
-    grossSales: '12000',
-    netReturnValue: '176999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "7",
+    grossSales: "12010",
+    netReturnValue: "176999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2004",
+    date: "01/03/2014",
     value: 5,
     count: 5,
-    averageOrderValue: '10000',
-    conversionRate: '5',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "5",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2005",
+    date: "01/03/2015",
     value: 4.9,
     count: 4.9,
-    averageOrderValue: '10000',
-    conversionRate: '17',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "17",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2006",
+    date: "01/03/2016",
     value: 6,
     count: 35,
-    averageOrderValue: '10000',
-    conversionRate: '13',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "13",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2007",
+    date: "01/03/2017",
     value: 7,
     count: 7,
-    averageOrderValue: '10000',
-    conversionRate: '16',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "16",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2008",
+    date: "01/03/2018",
     value: 9,
     count: 1,
-    averageOrderValue: '10000',
-    conversionRate: '14',
-    grossSales: '12000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "14",
+    grossSales: "12010",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
   {
-    date: "01/03/2009",
+    date: "01/03/2019",
     value: 13,
     count: 20,
-    averageOrderValue: '10000',
-    conversionRate: '13',
-    grossSales: '164000',
-    netReturnValue: '135999',
-    storeSearchConversion: '234',
-    returnRate: '14'
+    averageOrderValue: "10000",
+    conversionRate: "13",
+    grossSales: "164000",
+    netReturnValue: "135999",
+    storeSearchConversion: "234",
+    returnRate: "14",
   },
 ];
 
@@ -115,21 +115,25 @@ const DualLineGraph = (Props) => {
   useEffect(() => {
     setdataList([data, data]);
   }, []);
-
-  const handleDateRangeChange = (val) => {
+  console.log(">>>>>>", dataList);
+  const handleDateRangeChange = ({ val, key }) => {
+    console.log(val);
+    console.log("key", typeof key);
     console.log(
       "val1",
       dateFormateDefault(val[0]),
       "val2",
       dateFormateDefault(val[1])
     );
-    const filterDatalist = dataList[0].filter(
-      (el) =>
-        dayjs(el.date) > dayjs(val[0]) &&
-        dayjs(el.date) < dayjs(val[1])
+    const filterDatalist = dataList[key].filter(
+      (el) => dayjs(el.date) > dayjs(val[0]) && dayjs(el.date) < dayjs(val[1])
     );
 
-    console.log("filterDatalist", filterDatalist);
+    if (key !== 1) {
+      setdataList((prev) => [[...filterDatalist], [...prev[1]]]);
+    } else {
+      setdataList((prev) => [prev[1], filterDatalist]);
+    }
   };
 
   const config = {
@@ -182,10 +186,27 @@ const DualLineGraph = (Props) => {
         ) : (
           <>
             <DualAxes autoFit {...config} />
-            <RangePicker
-              onChange={handleDateRangeChange}
-              format={"MMM D, YYYY"}
-            />
+            <Row gutter={16} justify={"end"}>
+              <Col
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                xl={12}
+                xxl={12}
+                style={{ margin: "4px" }}
+              >
+                <RangePicker
+                  onChange={(val) => handleDateRangeChange({ val, key: 0 })}
+                  P
+                  format={"MMM D, YYYY"}
+                />
+                <RangePicker
+                  onChange={(val) => handleDateRangeChange({ val, key: 1 })}
+                  format={"MMM D, YYYY"}
+                />
+              </Col>
+            </Row>
           </>
         )}
       </Col>
